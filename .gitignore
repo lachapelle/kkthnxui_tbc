@@ -1,3 +1,15 @@
+# Other development addons
+BugSack
+/!BugGrabber
+Blizzard_*
+
+# Eclipse / LDT files
+.buildpath
+.project
+.settings
+/target
+
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
