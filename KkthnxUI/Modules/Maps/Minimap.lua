@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Minimap"].enable ~= true then return end
 
 local _G = _G
@@ -43,12 +43,14 @@ Minimap:SetParent(MinimapAnchor)
 Minimap:ClearAllPoints()
 Minimap:SetPoint("TOPLEFT", MinimapAnchor, "TOPLEFT", 0, 0)
 Minimap:SetPoint("BOTTOMRIGHT", MinimapAnchor, "BOTTOMRIGHT", 0, 0)
-Minimap:SetSize(MinimapAnchor:GetWidth(), MinimapAnchor:GetWidth())
+Minimap:SetWidth(MinimapAnchor:GetWidth())
+Minimap:SetHeight(MinimapAnchor:GetWidth())
 -- Backdrop
 MinimapBackdrop:ClearAllPoints()
 MinimapBackdrop:SetPoint("TOPLEFT", MinimapAnchor, "TOPLEFT", 2, -2)
 MinimapBackdrop:SetPoint("BOTTOMRIGHT", MinimapAnchor, "BOTTOMRIGHT", -2, 2)
-MinimapBackdrop:SetSize(MinimapAnchor:GetWidth(), MinimapAnchor:GetWidth())
+MinimapBackdrop:SetWidth(MinimapAnchor:GetWidth())
+MinimapBackdrop:SetHeight(MinimapAnchor:GetWidth())
 
 -- Mail
 MiniMapMailFrame:ClearAllPoints()
@@ -58,24 +60,6 @@ MiniMapMailIcon:SetTexture('Interface\\Addons\\KkthnxUI\\Media\\Textures\\Mail')
 
 MiniMapBattlefieldFrame:ClearAllPoints()
 MiniMapBattlefieldFrame:SetPoint("TOP", Minimap, "TOP", 1, 1)
-
-MiniMapInstanceDifficulty:ClearAllPoints()
-MiniMapInstanceDifficulty:SetParent(Minimap)
-MiniMapInstanceDifficulty:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 3, 2)
-
--- Invites icon
-GameTimeCalendarInvitesTexture:ClearAllPoints()
-GameTimeCalendarInvitesTexture:SetParent(Minimap)
-GameTimeCalendarInvitesTexture:SetPoint("TOPRIGHT")
-
--- Default LFG icon
-local function UpdateLFG()
-	MiniMapLFGFrame:ClearAllPoints()
-	MiniMapLFGFrame:SetPoint("TOP", Minimap, "TOP", 1, 6)
-	MiniMapLFGFrame:SetHighlightTexture(nil)
-	MiniMapLFGFrameBorder:Kill()
-end
-hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
 
 -- Enable mouse scrolling
 Minimap:EnableMouseWheel(true)

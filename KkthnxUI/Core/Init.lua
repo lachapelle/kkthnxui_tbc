@@ -1,5 +1,56 @@
 -- Initiation / Engine of KkthnxUI
-local AddOn, Engine = ...
+if IsAddOnLoaded("BuffLib") then
+	DisableAddOn("BuffLib");
+	ReloadUI();
+end
+
+function GetCVarBool(cvar)
+	local var = GetCVar(cvar)
+	if var == "1" then
+		return true
+	end
+ 
+	return false;
+end
+
+function LocalizedClassNames()
+	local locale = GetLocale()
+-- Localized class names.  Index == enUS, value == localized
+local classnames = locale == "deDE" and {
+        ["Warlock"] = "Hexenmeister",
+        ["Warrior"] = "Krieger",
+        ["Hunter"] = "Jäger",
+        ["Mage"] = "Magier",
+        ["Priest"] = "Priester",
+        ["Druid"] = "Druide",
+        ["Paladin"] = "Paladin",
+        ["Shaman"] = "Schamane",
+        ["Rogue"] = "Schurke",
+} or locale == "frFR" and {
+        ["Warlock"] = "D\195\169moniste",
+        ["Warrior"] = "Guerrier",
+        ["Hunter"] = "Chasseur",
+        ["Mage"] = "Mage",
+        ["Priest"] = "Pr\195\170tre",
+        ["Druid"] = "Druide",
+        ["Paladin"] = "Paladin",
+        ["Shaman"] = "Chaman",
+        ["Rogue"] = "Voleur",
+} or {
+        ["Warlock"] = "Warlock",
+        ["Warrior"] = "Warrior",
+        ["Hunter"] = "Hunter",
+        ["Mage"] = "Mage",
+        ["Priest"] = "Priest",
+        ["Druid"] = "Druid",
+        ["Paladin"] = "Paladin",
+        ["Shaman"] = "Shaman",
+        ["Rogue"] = "Rogue",
+}
+end
+
+local AddOn, Engine = "KkthnxUI", {}
+KKaddonInfo = function() return AddOn, Engine end
 Engine[1] = CreateFrame("Frame")
 Engine[2] = {}
 Engine[3] = {}
@@ -23,7 +74,6 @@ Engine[1].Version = GetAddOnMetadata(AddOn, "Version")
 Engine[1].ScreenHeight = tonumber(string.match(Engine[1].Resolution, "%d+x(%d+)"))
 Engine[1].ScreenWidth = tonumber(string.match(Engine[1].Resolution, "(%d+)x+%d"))
 Engine[1].WoWPatch, Engine[1].WoWBuild, Engine[1].WoWPatchReleaseDate, Engine[1].TocVersion = GetBuildInfo()
-
 SLASH_RELOADUI1 = "/rl"
 SlashCmdList.RELOADUI = ReloadUI
 

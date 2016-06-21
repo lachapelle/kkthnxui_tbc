@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = select(2, ...):unpack()
+﻿local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Tooltip"].enable ~= true then return end
 
 local format = string.format
@@ -56,10 +56,9 @@ for _, tt in pairs(tooltips) do
 end
 
 local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
-anchor:SetSize(200, 40)
+anchor:SetWidth(200)
+anchor:SetHeight(40)
 anchor:SetPoint(unpack(C["position"].tooltip))
-
-LFDSearchStatus:SetFrameStrata("TOOLTIP")
 
 -- Hide PVP text
 PVP_ENABLED = ""
@@ -97,7 +96,8 @@ end
 
 -- Raid icon
 local ricon = GameTooltip:CreateTexture("GameTooltipRaidIcon", "OVERLAY")
-ricon:SetSize(18, 18)
+ricon:SetWidth(18)
+ricon:SetHeight(18)
 ricon:SetPoint("BOTTOM", GameTooltip, "TOP", 0, 5)
 
 GameTooltip:HookScript("OnHide", function(self) ricon:SetTexture(nil) end)
@@ -220,7 +220,7 @@ local OnTooltipSetUnit = function(self)
 	local name, realm = UnitName(unit)
 	local race, englishRace = UnitRace(unit)
 	local level = UnitLevel(unit)
-	local levelColor = GetQuestDifficultyColor(level)
+	local levelColor = GetDifficultyColor(level)
 	local classification = UnitClassification(unit)
 	local creatureType = UnitCreatureType(unit)
 	local _, faction = UnitFactionGroup(unit)
@@ -260,8 +260,6 @@ local OnTooltipSetUnit = function(self)
 		end
 
 		local n = GetGuildInfo(unit) and 3 or 2
-		-- thx TipTac for the fix above with color blind enabled
-		if GetCVar("colorblindMode") == "1" then n = n + 1 end
 		_G["GameTooltipTextLeft"..n]:SetFormattedText("|cff%02x%02x%02x%s|r %s", levelColor.r * 255, levelColor.g * 255, levelColor.b * 255, level, race or UNKNOWN)
 
 		for i = 2, lines do

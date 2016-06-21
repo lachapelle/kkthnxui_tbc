@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 -- Per Class Config (overwrites general)
 -- Class Type need to be UPPERCASE -- DRUID, MAGE ect ect...

@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Unitframe"].enable ~= true then return end
 
 local _G = _G
@@ -22,13 +22,15 @@ local UnitReaction = UnitReaction
 local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 
 local PlayerAnchor = CreateFrame("Frame", "PlayerFrameAnchor", UIParent)
-PlayerAnchor:SetSize(146, 28)
+PlayerAnchor:SetWidth(146)
+PlayerAnchor:SetHeight(28)
 if not InCombatLockdown() then
 	PlayerAnchor:SetPoint(unpack(C["position"].unitframes.player))
 end
 
 local TargetAnchor = CreateFrame("Frame", "TargetFrameAnchor", UIParent)
-TargetAnchor:SetSize(146, 28)
+TargetAnchor:SetWidth(146)
+TargetAnchor:SetHeight(28)
 if not InCombatLockdown() then
 	TargetAnchor:SetPoint(unpack(C["position"].unitframes.target))
 end
@@ -51,6 +53,7 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 			}
 
 			hooksecurefunc("UnitFrame_Update", function(self, isParty)
+				self = this
 				if not self.name or not self:IsShown() then return end
 
 				local PET_COLOR = {r = 157/255, g = 197/255, b = 255/255}
@@ -185,9 +188,9 @@ Unitframes:SetScript("OnEvent", function(self, event, addon)
 		end
 
 		-- Tweak Focus Frame
-		FocusFrameToT:SetScale(1.0)
-		FocusFrameToT:ClearAllPoints()
-		FocusFrameToT:SetPoint("TOP", FocusFrame, "BOTTOM", 34, 35)
+		TargetofFocusFrame:SetScale(1.0)
+		TargetofFocusFrame:ClearAllPoints()
+		TargetofFocusFrame:SetPoint("TOP", FocusFrame, "BOTTOM", 34, 35)
 
 		-- Arena Frames Scaling
 		local function SetArenaFrames()
@@ -245,8 +248,8 @@ end
 -- Remove PvPIcons
 if C["Unitframe"].hide_pvpicon == true then
 	PlayerPVPIcon:Kill()
-	TargetFrameTextureFramePVPIcon:Kill()
-	FocusFrameTextureFramePVPIcon:Kill()
+	TargetPVPIcon:Kill()
+	FocusPVPIcon:Kill()
 	for i = 1, MAX_PARTY_MEMBERS do
 		_G["PartyMemberFrame"..i.."PVPIcon"]:Kill()
 	end

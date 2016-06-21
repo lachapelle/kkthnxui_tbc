@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Skins"].minimap_buttons ~= true or C["Minimap"].enable ~= true then return end
 
 local match = string.match
@@ -37,7 +37,8 @@ local function SkinButton(f)
 	f:SetPushedTexture(nil)
 	f:SetHighlightTexture(nil)
 	f:SetDisabledTexture(nil)
-	f:SetSize(19, 19)
+	f:SetWidth(19)
+	f:SetHeight(19)
 
 	for i = 1, f:GetNumRegions() do
 		local region = select(i, f:GetRegions())

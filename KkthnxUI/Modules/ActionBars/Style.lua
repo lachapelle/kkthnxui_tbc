@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["ActionBar"].Enable ~= true then return end
 
 -- By Tukz
@@ -10,6 +10,7 @@ local tostring = tostring
 local hooksecurefunc = hooksecurefunc
 
 local function StyleNormalButton(self)
+	self = this
 	local name = self:GetName()
 	if name:match("MultiCast") then return end
 	local button = self
@@ -58,7 +59,8 @@ local function StyleNormalButton(self)
 
 	if not button.isSkinned then
 		if self:GetHeight() ~= C["ActionBar"].Button_Size and not InCombatLockdown() and not name:match("ExtraAction") then
-			self:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
+			self:SetWidth(C["ActionBar"].Button_Size)
+			self:SetHeight(C["ActionBar"].Button_Size)
 		end
 		button:CreateBackdrop()
 		button.backdrop:SetPoint("CENTER", self, "CENTER", -2, -2)
@@ -90,7 +92,8 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 	flash:SetPoint("BOTTOMRIGHT", button, -2, 2)
 
 	if not button.isSkinned then
-		button:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
+		button:SetWidth(C["ActionBar"].Button_Size)
+		button:SetHeight(C["ActionBar"].Button_Size)
 		button:CreateBackdrop()
 		button.backdrop:SetPoint("CENTER", self, "CENTER", -2, -2)
 
@@ -101,15 +104,14 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 
 		if pet then
 			local autocast = _G[name.."AutoCastable"]
-			autocast:SetSize((C["ActionBar"].Button_Size * 2) - 10, (C["ActionBar"].Button_Size * 2) - 10)
+			autocast:SetWidth((C["ActionBar"].Button_Size * 2) - 10)
+			autocast:SetHeight((C["ActionBar"].Button_Size * 2) - 10)
 			autocast:ClearAllPoints()
 			autocast:SetPoint("CENTER", button, 0, 0)
 
-			local shine = _G[name.."Shine"]
-			shine:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
-
 			local cooldown = _G[name.."Cooldown"]
-			cooldown:SetSize(C["ActionBar"].Button_Size - 2, C["ActionBar"].Button_Size - 2)
+			cooldown:SetWidth(C["ActionBar"].Button_Size - 2)
+			cooldown:SetHeight(C["ActionBar"].Button_Size - 2)
 		end
 
 		button.isSkinned = true
@@ -147,6 +149,7 @@ function K.StylePet()
 end
 
 local function UpdateHotkey(button, type)
+	button = this
 	local hotkey = _G[button:GetName().."HotKey"]
 	local text = hotkey:GetText()
 
@@ -236,5 +239,6 @@ end
 
 hooksecurefunc("ActionButton_Update", StyleNormalButton)
 if C["ActionBar"].Hotkey == true then
+	-- FIXME: Different way of hiding hotkeys
 	hooksecurefunc("ActionButton_UpdateHotkeys", UpdateHotkey)
 end

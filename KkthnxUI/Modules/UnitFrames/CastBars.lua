@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Unitframe"].enable ~= true or IsAddOnLoaded("Quartz") then return end
 
 local unpack = unpack
@@ -10,11 +10,13 @@ local UIPARENT_MANAGED_FRAME_POSITIONS = UIPARENT_MANAGED_FRAME_POSITIONS
 
 -- Anchors
 local PlayerCastbarAnchor = CreateFrame("Frame", "PlayerCastbarAnchor", UIParent)
-PlayerCastbarAnchor:SetSize(CastingBarFrame:GetWidth() * C["Unitframe"].cbscale, CastingBarFrame:GetHeight() * 2)
+PlayerCastbarAnchor:SetWidth(CastingBarFrame:GetWidth() * C["Unitframe"].cbscale)
+PlayerCastbarAnchor:SetHeight(CastingBarFrame:GetHeight() * 2)
 PlayerCastbarAnchor:SetPoint(unpack(C["position"].unitframes.player_castbar))
 
 local TargetCastbarAnchor = CreateFrame("Frame", "TargetCastbarAnchor", UIParent)
-TargetCastbarAnchor:SetSize(TargetFrameSpellBar:GetWidth() * C["Unitframe"].cbscale, TargetFrameSpellBar:GetHeight() * 2)
+TargetCastbarAnchor:SetWidth(TargetFrameSpellBar:GetWidth() * C["Unitframe"].cbscale)
+TargetCastbarAnchor:SetHeight(TargetFrameSpellBar:GetHeight() * 2)
 TargetCastbarAnchor:SetPoint(unpack(C["position"].unitframes.target_castbar))
 
 local Castbars = CreateFrame("Frame")
@@ -39,14 +41,13 @@ Castbars:SetScript("OnEvent", function(self, event, addon)
 
 		CastingBarFrameBorder:SetWidth(CastingBarFrameBorder:GetWidth() + 4)
 		CastingBarFrameFlash:SetWidth(CastingBarFrameFlash:GetWidth() + 4)
-		CastingBarFrameBorderShield:SetWidth(CastingBarFrameBorderShield:GetWidth() + 4)
 		CastingBarFrameBorder:SetPoint("TOP", 0, 26)
 		CastingBarFrameFlash:SetPoint("TOP", 0, 26)
-		CastingBarFrameBorderShield:SetPoint("TOP", 0, 26)
 
 		-- CastingBarFrame Icon
 		CastingBarFrameIcon:Show()
-		CastingBarFrameIcon:SetSize(20, 20)
+		CastingBarFrameIcon:SetHeight(20)
+		CastingBarFrameIcon:SetWidth(20)
 		CastingBarFrameIcon:ClearAllPoints()
 		CastingBarFrameIcon:SetPoint("LEFT", CastingBarFrame, "RIGHT", 8, 0)
 

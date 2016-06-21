@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local hooksecurefunc = hooksecurefunc
 local GetNumQuestLogEntries, GetQuestLogTitle = GetNumQuestLogEntries, GetQuestLogTitle
@@ -6,27 +6,26 @@ local IsModifiedClick, IsAltKeyDown, IsControlKeyDown = IsModifiedClick, IsAltKe
 local GetQuestLogPushable = GetQuestLogPushable
 local GetID = GetID
 
--- Quest level(yQuestLevel by Yleaf)
-local function questlevel()
-	local buttons = QuestLogScrollFrame.buttons
-	local numButtons = #buttons
-	local scrollOffset = HybridScrollFrame_GetOffset(QuestLogScrollFrame)
-	local numEntries = GetNumQuestLogEntries()
-
-	for i = 1, numButtons do
-		local questIndex = i + scrollOffset
-		local questLogTitle = buttons[i]
-		if questIndex <= numEntries then
-			local title, level, _, _, isHeader = GetQuestLogTitle(questIndex)
-			if not isHeader then
-				questLogTitle:SetText("["..level.."] "..title)
-				QuestLogTitleButton_Resize(questLogTitle)
-			end
-		end
-	end
-end
-hooksecurefunc("QuestLog_Update", questlevel)
-QuestLogScrollFrameScrollBar:HookScript("OnValueChanged", questlevel)
+---- Quest level(yQuestLevel by Yleaf)
+--local function questlevel()
+--	local buttons = QuestLogScrollFrame.buttons
+--	local numButtons = #buttons
+--	local scrollOffset = HybridScrollFrame_GetOffset(QuestLogScrollFrame)
+--	local numEntries = GetNumQuestLogEntries()
+--
+--	for i = 1, numButtons do
+--		local questIndex = i + scrollOffset
+--		local questLogTitle = buttons[i]
+--		if questIndex <= numEntries then
+--			local title, level, _, _, isHeader = GetQuestLogTitle(questIndex)
+--			if not isHeader then
+--				questLogTitle:SetText("["..level.."] "..title)
+--				QuestLogTitleButton_Resize(questLogTitle)
+--			end
+--		end
+--	end
+--end
+--hooksecurefunc("QuestLog_Update", questlevel)
 
 -- CTRL+Click to abandon a quest or ALT+Click to share a quest(by Suicidal Katt)
 hooksecurefunc("QuestLogTitleButton_OnClick", function(self, button)

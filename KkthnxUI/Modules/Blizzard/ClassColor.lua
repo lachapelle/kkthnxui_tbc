@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Blizzard"].class_color ~= true then return end
 
 local format = string.format
@@ -22,10 +22,16 @@ local SMOOTH = {
 }
 
 local BC = {}
-for k, v in pairs(LOCALIZED_CLASS_NAMES_MALE) do
-	BC[v] = k
-end
-for k, v in pairs(LOCALIZED_CLASS_NAMES_FEMALE) do
+for k, v in pairs(
+		{["Warlock"] = "Warlock",
+        ["Warrior"] = "Warrior",
+        ["Hunter"] = "Hunter",
+        ["Mage"] = "Mage",
+        ["Priest"] = "Priest",
+        ["Druid"] = "Druid",
+        ["Paladin"] = "Paladin",
+        ["Shaman"] = "Shaman",
+        ["Rogue"] = "Rogue"}) do
 	BC[v] = k
 end
 
@@ -74,7 +80,7 @@ end
 
 	local diffColor = setmetatable({}, {
 	__index = function(t,i)
-		local c = i and GetQuestDifficultyColor(i)
+		local c = i and GetDifficultyColor(i)
 		if not c then return '|cffffffff' end
 		t[i] = Hex(c)
 		return t[i]
@@ -110,40 +116,6 @@ end
 local WHITE = {r = 1, g = 1, b = 1}
 local FRIENDS_LEVEL_TEMPLATE = FRIENDS_LEVEL_TEMPLATE:gsub('%%d', '%%s')
 FRIENDS_LEVEL_TEMPLATE = FRIENDS_LEVEL_TEMPLATE:gsub('%$d', '%$s') -- '%2$s %1$d-?? ??????'
-hooksecurefunc(FriendsFrameFriendsScrollFrame, 'buttonFunc', function(button, index, fristButton)
-	local height
-	local nameText
-	local infoText
-	local nameColor
-	local playerArea = GetRealZoneText()
-
-	if(button.buttonType == FRIENDS_BUTTON_TYPE_WOW) then
-		local name, level, class, area, connected, status, note = GetFriendInfo(button.id)
-		if(connected) then
-			nameText = classColorHex[class] .. name .. "|r, " .. format(FRIENDS_LEVEL_TEMPLATE, diffColor[level] .. level .. '|r', class)
-			nameColor = WHITE
-			if(area == playerArea) then
-				infoText = format('|cff00ff00%s|r', area)
-			end
-		end
-	elseif(button.buttonType == FRIENDS_BUTTON_TYPE_BNET) then
-		local presenceID, givenName, surname, toonName, toonID, client, isOnline, lastOnline, isAFK, isDND, messageText, noteText = BNGetFriendInfo(button.id)
-		if(isOnline and client == BNET_CLIENT_WOW) then
-			local hasFocus, toonName, client, realmName, faction, race, class, guild, zoneName, level, gameText, broadcastText, broadcastTime = BNGetToonInfo(toonID)
-			if(givenName and surname and toonName) then
-			end
-		end
-	end
-	if(nameText) then
-		button.name:SetText(nameText)
-	end
-	if(nameColor and C["Blizzard"].wowfriendswhitetext) then
-		button.name:SetTextColor(nameColor.r, nameColor.g, nameColor.b)
-	end
-	if(infoText) then
-		button.info:SetText(infoText)
-	end
-end)
 
 hooksecurefunc('GuildStatus_Update', function()
 	local playerArea = GetRealZoneText()
@@ -219,19 +191,6 @@ hooksecurefunc('WhoList_Update', function()
 		nameText:SetVertexColor(unpack(classColors[class]))
 		levelText:SetText(diffColor[level] .. level)
 		variableText:SetText(columnTable[UIDropDownMenu_GetSelectedID(WhoFrameDropDown)])
-	end
-end)
-
-hooksecurefunc('LFRBrowseFrameListButton_SetData', function(button, index)
-	local name, level, areaName, className, comment, partyMembers, status, class, encountersTotal, encountersComplete, isLeader, isTank, isHealer, isDamage = SearchLFGGetResults(index)
-
-	local c = class and classColors[class]
-	if c then
-		button.name:SetTextColor(unpack(c))
-		button.class:SetTextColor(unpack(c))
-	end
-	if level then
-		button.level:SetText(diffColor[level] .. level)
 	end
 end)
 

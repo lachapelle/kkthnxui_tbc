@@ -1,7 +1,6 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local IsMounted = IsMounted
-local CanExitVehicle = CanExitVehicle
 local IsFlyableArea = IsFlyableArea
 local IsControlKeyDown = IsControlKeyDown
 local GetNumCompanions = GetNumCompanions
@@ -15,10 +14,6 @@ function Mountz(groundmount, flyingmount)
 	local num = GetNumCompanions("MOUNT")
 	if not num or IsMounted() then
 		Dismount()
-		return
-	end
-	if CanExitVehicle() then
-		VehicleExit()
 		return
 	end
 	if IsUsableSpell(59569) ~= true then

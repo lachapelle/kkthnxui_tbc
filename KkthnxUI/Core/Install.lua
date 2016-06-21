@@ -1,11 +1,10 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local _G = _G
 local format = format
 local min, max = math.min, math.max
 local match = string.match
 local unpack, select = unpack, select
-local print = print
 local CreateFrame = CreateFrame
 local IsAddOnLoaded = IsAddOnLoaded
 local SetCVar = SetCVar
@@ -32,36 +31,24 @@ local LOOT, GENERAL, TRADE = LOOT, GENERAL, TRADE
 local function InstallUI()
 	local ActionBars = C["ActionBar"].Enable
 
-	SetCVar("ConsolidateBuffs", 0)
-	SetCVar("ConversationMode", "inline")
 	SetCVar("RotateMinimap", 0)
-	SetCVar("ShowAllSpellRanks", 0) -- No one needs this shit.
-	SetCVar("ShowClassColorInNameplate", 1)
 	SetCVar("SpamFilter", 0)
 	SetCVar("UberTooltips", 1)
-	SetCVar("WholeChatWindowClickable", 0)
 	SetCVar("alwaysShowActionBars", 1)
 	SetCVar("autoDismount", 1)
-	SetCVar("autoQuestProgress", 1)
 	SetCVar("autoQuestWatch", 1)
 	SetCVar("buffDurations", 1)
 	SetCVar("cameraDistanceMax", 50)
-	SetCVar("chatMouseScroll", 1)
-	SetCVar("chatStyle", "classic", "chatStyle") -- https://goo.gl/3v6Mwj
-	SetCVar("colorblindMode", 0)
 	SetCVar("gameTip", 0)
 	SetCVar("lockActionBars", 1)
 	SetCVar("lootUnderMouse", 0)
-	SetCVar("mapQuestDifficulty", 1)
 	SetCVar("maxfpsbk", 0)
 	SetCVar("removeChatDelay", 1)
 	SetCVar("screenshotQuality", 10)
 	SetCVar("scriptErrors", 0)
 	SetCVar("showLootSpam", 1)
 	SetCVar("showNewbieTips", 0)
-	SetCVar("showTutorials", 0)
 	SetCVar("taintLog", 0)
-	SetCVar("threatWarning", 3)
 	SetCVar("violenceLevel", 5)
 
 	if (ActionBars) then
@@ -69,10 +56,6 @@ local function InstallUI()
 	end
 
 	InterfaceOptionsControlsPanelAutoLootKeyDropDown:SetValue("SHIFT")
-	InterfaceOptionsControlsPanelAutoLootKeyDropDown:RefreshValue()
-
-	InterfaceOptionsCombatPanelSelfCastKeyDropDown:SetValue("ALT")
-	InterfaceOptionsCombatPanelSelfCastKeyDropDown:RefreshValue()
 
 	if K.Name == "Kkthnx" or K.Name == "Rollndots" or K.Name == "Broflex" then
 		SetCVar("scriptErrors", 1)
@@ -93,28 +76,10 @@ local function InstallUI()
 		for i = 1, NUM_CHAT_WINDOWS do
 			local frame = _G[format("ChatFrame%s", i)]
 			local chatFrameId = frame:GetID()
-			local chatName = FCF_GetChatWindowInfo(chatFrameId)
-
 			-- Move general chat to bottom left
 			if i == 1 then
 				frame:ClearAllPoints()
 				frame:SetPoint(unpack(C["position"].chat))
-			end
-
-			-- Save new default position and dimension
-			FCF_SavePositionAndDimensions(frame)
-			FCF_StopDragging(frame)
-
-			-- Set default font size
-			FCF_SetChatWindowFontSize(nil, frame, 12)
-
-			-- Rename chat tabs.
-			if i == 1 then
-				FCF_SetWindowName(frame, GENERAL)
-			elseif i == 2 then
-				FCF_SetWindowName(frame, GUILD_EVENT_LOG)
-			elseif i == 3 then
-				FCF_SetWindowName(frame, LOOT.." / "..TRADE)
 			end
 		end
 
@@ -161,34 +126,6 @@ local function InstallUI()
 		ChatFrame_AddChannel(ChatFrame1, GENERAL)
 		ChatFrame_RemoveChannel(ChatFrame1, TRADE)
 		ChatFrame_AddChannel(ChatFrame3, TRADE)
-
-		-- enable class color automatically on login and each character without doing /configure each time.
-		ToggleChatColorNamesByClassGroup(true, "SAY")
-		ToggleChatColorNamesByClassGroup(true, "EMOTE")
-		ToggleChatColorNamesByClassGroup(true, "YELL")
-		ToggleChatColorNamesByClassGroup(true, "GUILD")
-		ToggleChatColorNamesByClassGroup(true, "OFFICER")
-		ToggleChatColorNamesByClassGroup(true, "GUILD_ACHIEVEMENT")
-		ToggleChatColorNamesByClassGroup(true, "ACHIEVEMENT")
-		ToggleChatColorNamesByClassGroup(true, "WHISPER")
-		ToggleChatColorNamesByClassGroup(true, "PARTY")
-		ToggleChatColorNamesByClassGroup(true, "PARTY_LEADER")
-		ToggleChatColorNamesByClassGroup(true, "RAID")
-		ToggleChatColorNamesByClassGroup(true, "RAID_LEADER")
-		ToggleChatColorNamesByClassGroup(true, "RAID_WARNING")
-		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND")
-		ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND_LEADER")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL1")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL2")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL3")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL4")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL5")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL6")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL7")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL8")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL9")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL10")
-		ToggleChatColorNamesByClassGroup(true, "CHANNEL11")
 
 		-- Adjust Chat Colors
 		ChangeChatColor("CHANNEL1", 195/255, 230/255, 232/255) -- General
@@ -304,14 +241,14 @@ end
 
 	-- Welcome message
 	if C["General"].welcome_message == true then
-		print("|cffffe02e"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r * 255, K.Color.g * 255, K.Color.b * 255, K.Name)..".|r")
-		print("|cffffe02e"..L_WELCOME_LINE_2_1.."|cffffe02e"..L_WELCOME_LINE_2_2.."|r")
+		DEFAULT_CHAT_FRAME:AddMessage("|cffffe02e"..L_WELCOME_LINE_1..K.Version.." "..K.Client..", "..format("|cff%02x%02x%02x%s|r", K.Color.r * 255, K.Color.g * 255, K.Color.b * 255, K.Name)..".|r")
+		DEFAULT_CHAT_FRAME:AddMessage("|cffffe02e"..L_WELCOME_LINE_2_1.."|cffffe02e"..L_WELCOME_LINE_2_2.."|r")
 	end
 end)
 
 -- Help translate
 if C["General"].translate_message == true then
 	if GetLocale() == "esES" or GetLocale() == "koKR" or GetLocale() == "esMX" or GetLocale() == "deDE" or GetLocale() == "frFR" or GetLocale() == "koKR" or GetLocale() == "zhCN" or GetLocale() == "zhTW" then
-		print("|cffffe02ePlease help us translate the text settings for |cff2eb6ffKkthnxUI|r. |cffffe02eYou can post a commit to|r |cff2eb6ffgithub.com/Kkthnx/KkthnxUI_WotLK|r")
+		DEFAULT_CHAT_FRAME:AddMessage("|cffffe02ePlease help us translate the text settings for |cff2eb6ffKkthnxUI|r. |cffffe02eYou can post a commit to|r |cff2eb6ffgithub.com/Kkthnx/KkthnxUI_WotLK|r")
 	end
 end

@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Chat"].enable ~= true then return end
 
 local _G = _G
@@ -51,7 +51,7 @@ local function AddMessage(frame, str, ...)
 	return origs[frame](frame, str, ...)
 end
 
-FriendsMicroButton:Kill()
+--FriendsMicroButton:Kill()
 ChatFrameMenuButton:Kill()
 
 -- Set chat style
@@ -60,7 +60,8 @@ local function SetChatStyle(frame)
 	local id = frame:GetID()
 	local framename = frame:GetName()
 	local tab = _G[framename.."Tab"]
-	local editbox = _G[framename.."EditBox"]
+	local editbox = _G["ChatFrameEditBox"]
+	--local editbox = _G[framename.."EditBox"]
 
 	frame:SetFrameLevel(4)
 
@@ -82,30 +83,6 @@ local function SetChatStyle(frame)
 	_G[format("ChatFrame%sTabLeft", id)]:Kill()
 	_G[format("ChatFrame%sTabMiddle", id)]:Kill()
 	_G[format("ChatFrame%sTabRight", id)]:Kill()
-
-	_G[format("ChatFrame%sTabSelectedLeft", id)]:Kill()
-	_G[format("ChatFrame%sTabSelectedMiddle", id)]:Kill()
-	_G[format("ChatFrame%sTabSelectedRight", id)]:Kill()
-
-	_G[format("ChatFrame%sTabHighlightLeft", id)]:Kill()
-	_G[format("ChatFrame%sTabHighlightMiddle", id)]:Kill()
-	_G[format("ChatFrame%sTabHighlightRight", id)]:Kill()
-
-	_G[format("ChatFrame%sTabSelectedLeft", id)]:Kill()
-	_G[format("ChatFrame%sTabSelectedMiddle", id)]:Kill()
-	_G[format("ChatFrame%sTabSelectedRight", id)]:Kill()
-
-	_G[format("ChatFrame%sButtonFrameUpButton", id)]:Kill()
-	_G[format("ChatFrame%sButtonFrameDownButton", id)]:Kill()
-	_G[format("ChatFrame%sButtonFrameBottomButton", id)]:Kill()
-	_G[format("ChatFrame%sButtonFrameMinimizeButton", id)]:Kill()
-	_G[format("ChatFrame%sButtonFrame", id)]:Kill()
-
-	_G[format("ChatFrame%sEditBoxFocusLeft", id)]:Kill()
-	_G[format("ChatFrame%sEditBoxFocusMid", id)]:Kill()
-	_G[format("ChatFrame%sEditBoxFocusRight", id)]:Kill()
-
-	_G[format("ChatFrame%sTabGlow", id)]:Kill()
 
 	-- Kill off editbox artwork
 	local a, b, c = select(6, editbox:GetRegions()) a:Kill() b:Kill() c:Kill()
@@ -194,14 +171,14 @@ local function SetChatStyle(frame)
 		CombatLogQuickButtonFrame_Custom:CreateBackdrop(0)
 		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("TOPLEFT", -2, -2)
 		CombatLogQuickButtonFrame_Custom.backdrop:SetPoint("BOTTOMRIGHT", 3, -3)
-		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetSize(26, 28)
+		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetWidth(26)
+		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetHeight(28)
 		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SetPoint("TOPRIGHT", CombatLogQuickButtonFrame_Custom, "TOPRIGHT", 4, -1)
 		CombatLogQuickButtonFrame_CustomProgressBar:ClearAllPoints()
 		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("TOPLEFT", CombatLogQuickButtonFrame_Custom.backdrop, 4, -4)
 		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("BOTTOMRIGHT", CombatLogQuickButtonFrame_Custom.backdrop, -4, 5)
 		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["Media"].texture)
 		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C["Media"].texture)
-		CombatLogQuickButtonFrameButton1:SetPoint("BOTTOM", 0, 0)
 	end
 
 	frame.skinned = true
@@ -223,13 +200,11 @@ local function SetupChat(self)
 	end
 	ChatTypeInfo.SAY.sticky = var
 	ChatTypeInfo.PARTY.sticky = var
-	ChatTypeInfo.PARTY_LEADER.sticky = var
 	ChatTypeInfo.GUILD.sticky = var
 	ChatTypeInfo.OFFICER.sticky = var
 	ChatTypeInfo.RAID.sticky = var
 	ChatTypeInfo.RAID_WARNING.sticky = var
 	ChatTypeInfo.WHISPER.sticky = var
-	ChatTypeInfo.BN_WHISPER.sticky = var
 	ChatTypeInfo.CHANNEL.sticky = var
 	ChatTypeInfo.BATTLEGROUND.sticky = var
 end
@@ -238,33 +213,15 @@ local function SetupChatPosAndFont(self)
 	for i = 1, NUM_CHAT_WINDOWS do
 		local chat = _G[format("ChatFrame%s", i)]
 		local id = chat:GetID()
-		local _, fontSize = FCF_GetChatWindowInfo(id)
-
-		-- Min. size for chat font
-		if fontSize < 12 then
-			FCF_SetChatWindowFontSize(nil, chat, 12)
-		else
-			FCF_SetChatWindowFontSize(nil, chat, fontSize)
-		end
-
-		-- Font and font style for chat
-		if C["Chat"].outline == true then
-			chat:SetFont(C["font"].chat_font, fontSize, "OUTLINE")
-			chat:SetShadowOffset(0, -0)
-		else
-			chat:SetFont(C["font"].chat_font, fontSize)
-			chat:SetShadowOffset(K.Mult, -K.Mult)
-		end
-
+		
 		-- Force chat position
 		if i == 1 then
 			chat:ClearAllPoints()
-			chat:SetSize(C["Chat"].width, C["Chat"].height)
+			chat:SetWidth(C["Chat"].width)
+			chat:SetHeight(C["Chat"].height)
 			chat:SetPoint(C["position"].chat[1], C["position"].chat[2], C["position"].chat[3], C["position"].chat[4], C["position"].chat[5])
-			FCF_SavePositionAndDimensions(chat)
 		elseif i == 2 then
 			if C["Chat"].combatlog ~= true then
-				FCF_DockFrame(chat)
 				ChatFrame2Tab:EnableMouse(false)
 				ChatFrame2Tab:SetText("")
 				ChatFrame2Tab.SetText = K.Noop
@@ -273,12 +230,6 @@ local function SetupChatPosAndFont(self)
 			end
 		end
 	end
-
-	-- Reposition battle.net popup over chat #1
-	BNToastFrame:HookScript("OnShow", function(self)
-		self:ClearAllPoints()
-		self:SetPoint(unpack(C["position"].bn_popup))
-	end)
 end
 
 local UIChat = CreateFrame("Frame")
@@ -296,16 +247,8 @@ UIChat:SetScript("OnEvent", function(self, event, addon)
 	end
 end)
 
--- Setup temp chat (BN, WHISPER) when needed
-local function SetupTempChat()
-	local frame = FCF_GetCurrentChatFrame()
-	if frame.skinned then return end
-	SetChatStyle(frame)
-end
-hooksecurefunc("FCF_OpenTemporaryWindow", SetupTempChat)
-
 -- Remove player"s realm name
-local function RemoveRealmName(self, event, msg, author, ...)
+local function RemoveRealmName(msg, author, ...)
 	local realm = gsub(K.Realm, " ", "")
 	if msg:find("-" .. realm) then
 		return false, gsub(msg, "%-"..realm, ""), author, ...
@@ -330,11 +273,13 @@ end
 local bigchat = false
 function SlashCmdList.BIGCHAT(msg, editbox)
 	if bigchat == false then
-		ChatFrame1:SetSize(400, 400)
+		ChatFrame1:SetWidth(400)
+		ChatFrame1:SetHeight(400)
 		bigchat = true
 		K.Print("|cffffe02eBig Chat Mode|r: On")
 	else
-		ChatFrame1:SetSize(400, 150)
+		ChatFrame1:SetWidth(400)
+		ChatFrame1:SetHeight(400)
 		bigchat = false
 		K.Print("|cffffe02eBig Chat Mode|r: Off")
 	end

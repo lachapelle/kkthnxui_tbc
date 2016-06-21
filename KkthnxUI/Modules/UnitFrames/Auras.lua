@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Unitframe"].enable ~= true then return end
 
 local _G = _G
@@ -10,7 +10,12 @@ TargetFrame.maxBuffs = 16
 TargetFrame.maxDebuffs = 16
 MAX_TARGET_BUFFS = 16
 MAX_TARGET_DEBUFFS = 16
-TargetFrame_UpdateAuras(TargetFrame)
+--TargetFrame_UpdateAuras(TargetFrame)
+--TargetFrame_UpdateBuffAnchor < actual function
+
+--[[
+Take code from BuffSizer and rework this where needed - might not really be necessary at all
+]]--
 
 -- AURAS
 local function TargetAuraColour(self)
@@ -172,8 +177,8 @@ local function TargetDebuffPosit(self, debuffName, index, numBuffs, anchorIndex,
 end
 
 do
-	hooksecurefunc("RefreshDebuffs", TargetAuraColour)
-	hooksecurefunc("TargetFrame_UpdateAuras", TargetAuraColour)
-	hooksecurefunc("TargetFrame_UpdateAuraPositions", TargetAuraPosit)
+	--hooksecurefunc("RefreshDebuffs", TargetAuraColour)
+	--hooksecurefunc("TargetFrame_UpdateAuras", TargetAuraColour)
+	--hooksecurefunc("TargetFrame_UpdateAuraPositions", TargetAuraPosit)
 	hooksecurefunc("TargetFrame_UpdateDebuffAnchor", TargetDebuffPosit)
 end

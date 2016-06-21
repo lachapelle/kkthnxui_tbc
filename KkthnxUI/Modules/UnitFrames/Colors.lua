@@ -1,9 +1,9 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local setmetatable = setmetatable
 
 -- Colors
-local _, ns = ...
+local _, ns = oUFaddonInfo()
 local oUF = ns.oUF
 
 K.oUF_colors = setmetatable({

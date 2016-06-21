@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["ActionBar"].Enable ~= true then return end
 
 --	Pet and shapeshift bars style function
@@ -68,21 +68,12 @@ K.PetBarUpdate = function(self, event)
 			end
 		else
 			petActionButton:SetChecked(0)
-			if IsPetAttackAction(i) then
-				PetActionButton_StopFlash(petActionButton)
-			end
 		end
 
 		if autoCastAllowed then
 			petAutoCastableTexture:Show()
 		else
 			petAutoCastableTexture:Hide()
-		end
-
-		if autoCastEnabled then
-			AutoCastShine_AutoCastStart(petAutoCastShine)
-		else
-			AutoCastShine_AutoCastStop(petAutoCastShine)
 		end
 
 		if name then

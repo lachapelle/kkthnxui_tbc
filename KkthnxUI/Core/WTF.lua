@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local print = print
 local IsAddOnLoaded = IsAddOnLoaded
@@ -600,21 +600,6 @@ local UploadBartender4 = function()
 					},
 				},
 			},
-			["Vehicle"] = {
-				["profiles"] = {
-					["Default"] = {
-						["version"] = 3,
-						["skin"] = {
-							["ID"] = "|cff2eb6ffKkthnx's|r |cFFFFB200Normal|r",
-						},
-						["position"] = {
-							["y"] = 77.9999847412109,
-							["x"] = 195.562377929688,
-							["point"] = "BOTTOM",
-						},
-					},
-				},
-			},
 			["PetBar"] = {
 				["profiles"] = {
 					["Default"] = {
@@ -650,7 +635,6 @@ local UploadBartender4 = function()
 		},
 		["profiles"] = {
 			["Default"] = {
-				["blizzardVehicle"] = true,
 				["focuscastmodifier"] = false,
 				["onkeydown"] = false,
 				["outofrange"] = "hotkey",

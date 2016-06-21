@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Automation"].autocollapse ~= true or IsAddOnLoaded("QuestHelper") == true then return end
 
 local CreateFrame = CreateFrame
@@ -10,8 +10,8 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:SetScript("OnEvent", function(self, event)
 	if IsInInstance() then
-		WatchFrame_CollapseExpandButton_OnClick(WatchFrame_CollapseExpandButton)
-	elseif WatchFrame.collapsed and not InCombatLockdown() then
-		WatchFrame_CollapseExpandButton_OnClick(WatchFrame_CollapseExpandButton)
+		QuestWatchFrame_CollapseExpandButton_OnClick(QuestWatchFrame_CollapseExpandButton)
+	elseif QuestWatchFrame.collapsed and not InCombatLockdown() then
+		QuestWatchFrame_CollapseExpandButton_OnClick(QuestWatchFrame_CollapseExpandButton)
 	end
 end)

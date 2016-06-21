@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["PulseCD"].enable ~= true then return end
 
 -- Based on Doom Cooldown Pulse(by Woffle of Dark Iron, editor Affli)

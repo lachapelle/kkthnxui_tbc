@@ -1,4 +1,9 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
+
+local SystemFont_Shadow_Huge3 = CreateFont("SystemFont_Shadow_Huge3")
+SystemFont_Shadow_Huge3:SetFont(STANDARD_TEXT_FONT, 16, "OUTLINE")
+SystemFont_Shadow_Huge3:SetShadowOffset(1,-1)
+SystemFont_Shadow_Huge3:SetShadowColor(0,0,0,0.6)
 
 -- Fonts Settings
 C["font"] = {

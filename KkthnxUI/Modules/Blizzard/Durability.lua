@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Blizzard"].durability ~= true then return end
 
 local _G = _G
@@ -35,7 +35,7 @@ end
 	local fontstrings = setmetatable({}, {
 	__index = function(t, i)
 		local gslot = _G["Character"..i.."Slot"]
-		local fstr = gslot:CreateFontString(nil, "OVERLAY", "SystemFont_Outline_Small")
+		local fstr = gslot:CreateFontString(nil, "OVERLAY", "SystemFont")
 		fstr:SetPoint("BOTTOM", gslot, "BOTTOM", 0, 1)
 		t[i] = fstr
 		return fstr

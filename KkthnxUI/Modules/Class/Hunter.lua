@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if K.Class ~= "HUNTER" and K.Level > 10 then return end
 
 local select = select

@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Skins"].recount ~= true or not IsAddOnLoaded("Recount") then return end
 
 local _G = _G

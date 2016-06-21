@@ -1,9 +1,9 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Minimap"].enable ~= true then return end
 
 local match = string.match
 local CreateFrame, UIParent = CreateFrame, UIParent
-local ToggleFrame = ToggleFrame
+local ToggleFrame = function(frame) if(frame:IsShown()) then frame:Hide() else frame:Show() end end
 local IsShiftKeyDown = IsShiftKeyDown
 local ToggleDropDownMenu = ToggleDropDownMenu
 

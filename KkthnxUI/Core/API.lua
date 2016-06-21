@@ -1,4 +1,4 @@
-local K, C, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 -- Application Programming Interface for KkthnxUI (API)
 local getmetatable = getmetatable
@@ -100,7 +100,8 @@ end
 local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 	local r, g, b = K.Color.r, K.Color.g, K.Color.b
 	f:SetFrameLevel(1)
-	f:SetSize(w, h)
+	f:SetHeight(h)
+	f:SetWidth(w)
 	f:SetFrameStrata("BACKGROUND")
 	f:SetPoint(a1, p, a2, x, y)
 

@@ -1,9 +1,10 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if IsAddOnLoaded("Carbonite") then return end
 
 local MinimapZone = CreateFrame("Frame", "MinimapZone", Minimap)
 MinimapZone:CreateBackdrop()
-MinimapZone:SetSize(0, 20)
+MinimapZone:SetWidth(0)
+MinimapZone:SetHeight(20)
 MinimapZone:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 2, -2)
 MinimapZone:SetFrameLevel(Minimap:GetFrameLevel() + 3)
 MinimapZone:SetFrameStrata(Minimap:GetFrameStrata())

@@ -1,4 +1,4 @@
-local K, C, L = select(2, ...):unpack()
+local K, C, L = select(2, KKaddonInfo()):unpack()
 if C["Misc"].durability_warninig ~= true then return end
 
 local Durability = CreateFrame("Frame")

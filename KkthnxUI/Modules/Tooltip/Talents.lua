@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = select(2, ...):unpack()
+﻿local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Tooltip"].enable ~= true or C["Tooltip"].talents ~= true then return end
 
 -- Target Talents(TipTacTalents by Aezay)

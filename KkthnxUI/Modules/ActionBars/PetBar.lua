@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
@@ -7,7 +7,7 @@ local CreateFrame = CreateFrame
 local UIParent = UIParent
 
 -- Create bar
-local bar = CreateFrame("Frame", "PetHolder", UIParent, "SecureHandlerStateTemplate")
+local bar = CreateFrame("Frame", "PetHolder", UIParent, "SecureActionButtonTemplate")
 if C["ActionBar"].PetBar_Hide then bar:SetScale(0.000001) bar:SetAlpha(0) PetActionBarAnchor:Hide() return end
 bar:SetAllPoints(PetActionBarAnchor)
 bar:RegisterEvent("PET_BAR_HIDE")
@@ -35,7 +35,8 @@ bar:SetScript("OnEvent", function(self, event, arg1)
 			local button = _G["PetActionButton"..i]
 			button:ClearAllPoints()
 			button:SetParent(PetHolder)
-			button:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
+			button:SetWidth(C["ActionBar"].Button_Size)
+			button:SetHeight(C["ActionBar"].Button_Size)
 			if i == 1 then
 				if C["ActionBar"].PetBar_Horizontal == true then
 					button:SetPoint("BOTTOMLEFT", 0, 0)
@@ -52,7 +53,6 @@ bar:SetScript("OnEvent", function(self, event, arg1)
 			button:Show()
 			self:SetAttribute("addchild", button)
 		end
-		RegisterStateDriver(self, "visibility", "[pet,novehicleui,nobonusbar:5] show; hide")
 		hooksecurefunc("PetActionBar_Update", K.PetBarUpdate)
 	elseif event == "PET_BAR_UPDATE" or event == "PLAYER_CONTROL_LOST" or event == "PLAYER_CONTROL_GAINED" or event == "PLAYER_FARSIGHT_FOCUS_CHANGED"
 	or event == "UNIT_FLAGS" or (event == "UNIT_PET" and arg1 == "player") or (arg1 == "pet" and event == "UNIT_AURA") then

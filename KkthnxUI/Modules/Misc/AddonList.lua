@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local _G = _G
 local unpack = unpack
@@ -11,7 +11,8 @@ local GetNumAddOns = GetNumAddOns
 local GetAddOnDependencies = GetAddOnDependencies
 
 local AddonList = CreateFrame("frame", "Addons", UIParent)
-AddonList:SetSize(350, 450)
+AddonList:SetWidth(350)
+AddonList:SetHeight(450)
 AddonList:SetPoint("CENTER")
 AddonList:EnableMouse(true)
 AddonList:SetMovable(true)
@@ -23,12 +24,14 @@ AddonList:SetFrameStrata("DIALOG")
 tinsert(UISpecialFrames, "Addons")
 
 local CloseButton = CreateFrame("Button", "CloseButton", AddonList, "UIPanelCloseButton")
-CloseButton:SetSize(26, 26)
+CloseButton:SetWidth(26)
+CloseButton:SetHeight(26)
 CloseButton:SetPoint("BOTTOMRIGHT", AddonList, "TOPRIGHT", 0, -26)
 CloseButton:SetScript("OnClick", function() AddonList:Hide() end)
 
 local ReloadButton = CreateFrame("Button", "ReloadButton", AddonList, "UIPanelButtonTemplate")
-ReloadButton:SetSize(105, 20)
+ReloadButton:SetWidth(105)
+ReloadButton:SetHeight(20)
 ReloadButton:SetPoint("BOTTOM", AddonList, "BOTTOM", 0, 10)
 ReloadButton:SetText(L_ADDON_RELOAD)
 ReloadButton:SetScript("OnClick", function() ReloadUI() end)
@@ -116,13 +119,15 @@ makeList()
 
 -- Credits to Bunny67
 local EnableAllButton = CreateFrame("Button", "EnableAllButton", AddonList, "UIPanelButtonTemplate")
-EnableAllButton:SetSize(105, 20)
+EnableAllButton:SetWidth(105)
+EnableAllButton:SetHeight(20)
 EnableAllButton:SetPoint("RIGHT" , ReloadButton, "LEFT", 0, 0)
 EnableAllButton:SetText(L_ADDON_ENABLE_ALL)
 EnableAllButton:SetScript("OnClick", function() EnableAllAddOns() makeList() end)
 
 local DisableAllButton = CreateFrame("Button", "DisableAllButton", AddonList, "UIPanelButtonTemplate")
-DisableAllButton:SetSize(105, 20)
+DisableAllButton:SetWidth(105)
+DisableAllButton:SetHeight(20)
 DisableAllButton:SetPoint("LEFT" , ReloadButton, "RIGHT", 0, 0)
 DisableAllButton:SetText(L_ADDON_DISABLE_ALL)
 DisableAllButton:SetScript("OnClick", function() DisableAllAddOns() makeList() end)

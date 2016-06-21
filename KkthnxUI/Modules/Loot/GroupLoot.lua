@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = select(2, ...):unpack()
+﻿local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Loot"].rolllootframe ~= true then return end
 
 local unpack = unpack
@@ -15,7 +15,8 @@ local cancelled_rolls = {}
 local rolltypes = {"need", "greed", "disenchant", [0] = "pass"}
 
 local LootRollAnchor = CreateFrame("Frame", "LootRollAnchor", UIParent)
-LootRollAnchor:SetSize(313, 26)
+LootRollAnchor:SetWidth(313)
+LootRollAnchor:SetHeight(26)
 
 local function ClickRoll(frame)
 	RollOnLoot(frame.parent.rollid, frame.rolltype)
@@ -69,7 +70,8 @@ end
 local function CreateRollButton(parent, ntex, ptex, htex, rolltype, tiptext, ...)
 	local f = CreateFrame("Button", nil, parent)
 	f:SetPoint(...)
-	f:SetSize(28, 28)
+	f:SetWidth(28)
+	f:SetHeight(28)
 	f:SetNormalTexture(ntex)
 	if ptex then f:SetPushedTexture(ptex) end
 	f:SetHighlightTexture(htex)
@@ -92,7 +94,8 @@ local function CreateRollFrame()
 	CreateBorder(frame, 10, 2)
 	frame:SetBackdrop(K.SimpleBackdrop)
 	frame:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
-	frame:SetSize(280, 22)
+	frame:SetWidth(280)
+	frame:SetHeight(22)
 	frame:SetFrameStrata("MEDIUM")
 	frame:SetFrameLevel(10)
 	frame:SetScript("OnEvent", OnEvent)
@@ -101,7 +104,8 @@ local function CreateRollFrame()
 
 	local button = CreateFrame("Button", nil, frame)
 	button:SetPoint("LEFT", -29, 0)
-	button:SetSize(22, 22)
+	button:SetWidth(22)
+	button:SetHeight(22)
 	CreateBorder(button, 10, 2)
 	button:SetBackdrop(K.SimpleBackdrop)
 	button:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
@@ -116,7 +120,8 @@ local function CreateRollFrame()
 	button.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 
 	local status = CreateFrame("StatusBar", nil, frame)
-	status:SetSize(326, 20)
+	status:SetWidth(326)
+	status:SetHeight(20)
 	status:SetPoint("TOPLEFT", 0, 0)
 	status:SetPoint("BOTTOMRIGHT", 0, 0)
 	status:SetScript("OnUpdate", StatusUpdate)
@@ -149,7 +154,8 @@ local function CreateRollFrame()
 	loot:SetShadowOffset(K.Mult, -K.Mult)
 	loot:SetPoint("LEFT", bind, "RIGHT", 0, 0)
 	loot:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
-	loot:SetSize(200, 10)
+	loot:SetWidth(200)
+	loot:SetHeight(10)
 	loot:SetJustifyH("LEFT")
 	frame.fsloot = loot
 

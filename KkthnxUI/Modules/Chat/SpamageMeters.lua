@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = select(2, ...):unpack()
+﻿local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Chat"].enable ~= true or C["Chat"].damage_meter_spam ~= true then return end
 
 local ipairs = ipairs

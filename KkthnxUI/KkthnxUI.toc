@@ -1,12 +1,13 @@
-## Interface: 30300
+## Interface: 20400
 ## Title: |cff2eb6ffKkthnxUI|r
 ## Notes: Modular, lightweight, all-in-one overhaul for the World of Warcraft interface!
-## Author: Shestak, Josh "Kkthnx" Russell
+## Author: Shestak, Josh "Kkthnx" Russell, Schaka
 ## Version: 4.05
 ## OptionalDeps: Blizzard_CombatText, KkthnxUI_Config, Bigwigs, Blizzard_DebugTools, CLCRet, DBM, Grid, Mapster, Omen, Postal, Recount, SexyMap, SharedMedia, Skada, WeakAuras, _NPCScan.Overlay, cargBags, eCastingBar
 ## SavedVariables: SavedOptions
-## SavedVariablesPerCharacter: SavedOptionsPerChar, SavedPositions
+## SavedVariablesPerCharacter: SavedOptionsPerChar, SavedPositions, FocusFrameOptions
 ## Website: https://kkthnx.github.io/KkthnxUI_WotLK/
 ## Email: Kkthnxbye@live.com
 
+FocusFrame.xml
 KkthnxUI.xml

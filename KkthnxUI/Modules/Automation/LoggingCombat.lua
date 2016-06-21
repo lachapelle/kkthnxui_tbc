@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Automation"].logging_combat ~= true or K.Realm == "Blackrock [PvP only]" then return end 
 
 local IsInInstance = IsInInstance

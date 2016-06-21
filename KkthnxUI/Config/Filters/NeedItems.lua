@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Loot"].auto_greed ~= true then return end
 
 --	The best way to add or delete item is to go at www.wowhead.com, search for a item.

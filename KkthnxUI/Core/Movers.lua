@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local _G = _G
 local unpack, pairs, print = unpack, pairs, print
@@ -33,7 +33,6 @@ K.MoverFrames = {
 	TargetFrameAnchor,
 	TooltipAnchor,
 	TotemHolder,
-	VehicleAnchor,
 	WatchFrameAnchor,
 }
 

@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Error"].enable ~= true then return end
 
 local Errors = CreateFrame("Frame")

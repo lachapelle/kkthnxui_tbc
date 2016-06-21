@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Minimap"].enable ~= true or C["Minimap"].collectbuttons ~= true then return end
 
 local unpack = unpack
@@ -37,7 +37,8 @@ local button = CreateFrame("Frame", "ButtonCollectFrame", UIParent)
 local line = ceil(C["Minimap"].size / 20)
 
 local function PositionAndStyle()
-	button:SetSize(20, 20)
+	button:SetWidth(20)
+	button:SetHeight(20)
 	button:SetPoint(unpack(C["position"].minimap_buttons))
 	for i = 1, #buttons do
 		buttons[i]:ClearAllPoints()

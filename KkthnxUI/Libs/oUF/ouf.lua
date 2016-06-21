@@ -1,4 +1,4 @@
-local parent, ns = ...
+local parent, ns = oUFaddonInfo()
 local global = GetAddOnMetadata(parent, "X-oUF")
 local _VERSION = GetAddOnMetadata(parent, "version")
 
@@ -44,10 +44,6 @@ local updateActiveUnit = function(self, event, unit)
 		realUnit = "pet"
 	elseif(realUnit == "playertarget") then
 		realUnit = "target"
-	end
-
-	if(modUnit == "pet" and realUnit ~= "pet") then
-		modUnit = "vehicle"
 	end
 
 	if(not UnitExists(modUnit) or unit and unit ~= realUnit and unit ~= modUnit) then return end
@@ -188,8 +184,6 @@ local InitializeSecureMenu = function(self)
 		menu = "ARENAENEMY"
 	elseif(UnitIsUnit(unit, "player")) then
 		menu = "SELF"
-	elseif(UnitIsUnit(unit, "vehicle")) then
-		menu = "VEHICLE"
 	elseif(UnitIsUnit(unit, "pet")) then
 		menu = "PET"
 	elseif(UnitIsPlayer(unit)) then
@@ -270,19 +264,12 @@ local initObject = function(unit, style, styleFunc, header, ...)
 		end
 
 		if(not (suffix == "target" or objectUnit and objectUnit:match"target")) then
-			object:RegisterEvent("UNIT_ENTERED_VEHICLE", updateActiveUnit)
-			object:RegisterEvent("UNIT_EXITED_VEHICLE", updateActiveUnit)
-
 			if(objectUnit ~= "player") then
 				object:RegisterEvent("UNIT_PET", UpdatePet)
 			end
 		end
 
 		if(not header) then
-			if(not (objectUnit:match"target" or suffix == "target")) then
-				object:SetAttribute('toggleForVehicle', true)
-			end
-
 			object:SetAttribute("*type1", "target")
 			object.menu = togglemenu
 			object:SetAttribute("*type2", "menu")
@@ -501,7 +488,6 @@ local initialConfigFunction = function(self)
 			frame:SetAttribute("type1", "target")
 			frame.menu = togglemenu
 			frame:SetAttribute("type2", "menu")
-			frame:SetAttribute("toggleForVehicle", true)
 			frame.guessUnit = unit
 		end
 	end

@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["ActionBar"].Enable ~= true or K.Class ~= "SHAMAN" then return end
 
 local unpack = unpack

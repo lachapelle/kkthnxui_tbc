@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["ActionBar"].Enable ~= true or C["ActionBar"].selfcast ~= true then return end
 
 local _G = _G

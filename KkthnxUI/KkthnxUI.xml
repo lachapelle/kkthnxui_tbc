@@ -27,12 +27,6 @@
 	<Script file="Modules\UnitFrames\Colors.lua"/>
 	<Script file="Media\Media.lua"/>
 
-	<Script file="Config\Filters\Announcements.lua"/>
-	<Script file="Config\Filters\ChatSpam.lua"/>
-	<Script file="Config\Filters\FilgerSpells.lua"/>
-	<Script file="Config\Filters\Nameplates.lua"/>
-	<Script file="Config\Filters\NeedItems.lua"/>
-
 	<Script file="Core\API.lua"/>
 	<Script file="Core\Functions.lua"/>
 	<Script file="Core\Animation.lua"/>
@@ -46,6 +40,11 @@
 	<Script file="Core\Border.lua"/>
 	<Script file="Core\Developer.lua"/>
 	<Script file="Core\Panels.lua"/>
+	
+	<Script file="Config\Filters\Announcements.lua"/>
+	<Script file="Config\Filters\ChatSpam.lua"/>
+	<Script file="Config\Filters\Nameplates.lua"/>
+	<Script file="Config\Filters\NeedItems.lua"/>
 
 	<Script file="Modules\Unitframes\Auras.lua"/>
 	<Script file="Modules\Unitframes\CastBars.lua"/>
@@ -62,7 +61,6 @@
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\ArmoryLink.lua"/>
 	<Script file="Modules\Misc\Durability.lua"/>
-	<Script file="Modules\Misc\Filger.lua"/>
 	<Script file="Modules\Misc\GarbageCollect.lua"/>
 	<Script file="Modules\Misc\HatTrick.lua"/>
 	<Script file="Modules\Misc\Mail.lua"/>
@@ -85,7 +83,6 @@
 	<Script file="Modules\ActionBars\TotemBar.lua"/>
 	<Script file="Modules\ActionBars\Toggle.lua"/>
 	<Script file="Modules\ActionBars\Style.lua"/>
-	<Script file="Modules\ActionBars\Range.lua"/>
 	<Script file="Modules\ActionBars\Others.lua"/>
 	<Script file="Modules\ActionBars\Cooldowns.lua"/>
 	<Script file="Modules\ActionBars\SelfCast.lua"/>

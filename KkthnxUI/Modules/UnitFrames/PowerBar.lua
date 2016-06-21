@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local _G = _G
 local unpack = unpack
@@ -7,7 +7,6 @@ local UIParent = UIParent
 local GetRuneCooldown = GetRuneCooldown
 local GetTime = GetTime
 local UnitIsDeadOrGhost = UnitIsDeadOrGhost
-local UnitHasVehicleUI = UnitHasVehicleUI
 
 if (K.Class == "DEATHKNIGHT" and C["PowerBar"].hide_blizzard_runebar) then
 	for i = 1, 6 do
@@ -156,7 +155,7 @@ end
 local function UpdateBarVisibility()
 	local _, powerType = UnitPowerType("player")
 
-	if ((not C["PowerBar"].enable and powerType == "ENERGY") or (not C["PowerBar"].show_rage and powerType == "RAGE") or (not C["PowerBar"].show_mana and powerType == "MANA") or (not C["PowerBar"].show_rune and powerType == "RUNEPOWER") or UnitIsDeadOrGhost("player") or UnitHasVehicleUI("player")) then
+	if ((not C["PowerBar"].enable and powerType == "ENERGY") or (not C["PowerBar"].show_rage and powerType == "RAGE") or (not C["PowerBar"].show_mana and powerType == "MANA") or (not C["PowerBar"].show_rune and powerType == "RUNEPOWER") or UnitIsDeadOrGhost("player")) then
 		f.Power:SetAlpha(0)
 	elseif (InCombatLockdown()) then
 		securecall("UIFrameFadeIn", f.Power, 0.3, f.Power:GetAlpha(), 1)
@@ -233,14 +232,8 @@ f:SetScript("OnUpdate", function(self, elapsed)
 	if (updateTimer > 0.1) then
 		if (f.Rune) then
 			for i = 1, 6 do
-				if (UnitHasVehicleUI("player")) then
-					if (f.Rune[i]:IsShown()) then
-						f.Rune[i]:Hide()
-					end
-				else
-					if (not f.Rune[i]:IsShown()) then
-						f.Rune[i]:Show()
-					end
+				if (not f.Rune[i]:IsShown()) then
+					f.Rune[i]:Show()
 				end
 
 				f.Rune[i]:SetText(CalcRuneCooldown(i))

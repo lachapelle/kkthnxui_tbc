@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
@@ -10,7 +10,7 @@ local GetShapeshiftFormInfo = GetShapeshiftFormInfo
 local hooksecurefunc = hooksecurefunc
 
 -- Setup Shapeshift Bar by Tukz
-local bar = CreateFrame("Frame", "UIShapeShift", ShiftHolder, "SecureHandlerStateTemplate")
+local bar = CreateFrame("Frame", "UIShapeShift", ShiftHolder, "SecureActionButtonTemplate")
 if C["ActionBar"].StanceBar_Hide then bar:SetScale(0.000001) bar:SetAlpha(0) ShiftHolder:Hide() return end
 bar:ClearAllPoints()
 bar:SetAllPoints(ShiftHolder)

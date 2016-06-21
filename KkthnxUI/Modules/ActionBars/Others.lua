@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
@@ -57,23 +57,3 @@ end)
 if not GetCVarBool("lockActionBars") then
 	SetCVar("lockActionBars", 1)
 end
-
--- Vehicle button anchor
-local VehicleButtonAnchor = CreateFrame("Frame", "VehicleButtonAnchor", UIParent)
-VehicleButtonAnchor:SetPoint(unpack(C["position"].vehicle_bar))
-VehicleButtonAnchor:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
-
--- Vehicle button
-local vehicle = CreateFrame("BUTTON", "VehicleButton", UIParent, "SecureActionButtonTemplate")
-vehicle:SetSize(C["ActionBar"].Button_Size, C["ActionBar"].Button_Size)
-vehicle:SetPoint("BOTTOMLEFT", VehicleButtonAnchor, "BOTTOMLEFT", 0, 0)
-vehicle:SetNormalTexture("Interface\\Vehicles\\UI-Vehicles-Button-Exit-Up")
-vehicle:GetNormalTexture():SetTexCoord(0.2, 0.8, 0.2, 0.8)
-vehicle:GetNormalTexture():ClearAllPoints()
-vehicle:GetNormalTexture():SetPoint("TOPLEFT", 2, -2)
-vehicle:GetNormalTexture():SetPoint("BOTTOMRIGHT", -2, 2)
-vehicle:CreateBackdrop(2)
-vehicle:StyleButton(false)
-vehicle:RegisterForClicks("AnyUp")
-vehicle:SetScript("OnClick", function() VehicleExit() end)
-RegisterStateDriver(vehicle, "visibility", "[target=vehicle,exists] show;hide")

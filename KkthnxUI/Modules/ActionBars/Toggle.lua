@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["ActionBar"].Enable ~= true or C["ActionBar"].Toggle_Mode ~= true then return end
 
 local _G = _G
@@ -176,8 +176,6 @@ local SplitBars = function()
 			ToggleBar[3]:SetPoint("BOTTOMLEFT", SplitBarRight, "BOTTOMRIGHT", C["ActionBar"].Button_Space, 0)
 			ToggleBar[4]:ClearAllPoints()
 			ToggleBar[4]:SetPoint("BOTTOMRIGHT", SplitBarLeft, "BOTTOMLEFT", -C["ActionBar"].Button_Space, 0)
-			VehicleButtonAnchor:ClearAllPoints()
-			VehicleButtonAnchor:SetPoint("BOTTOMRIGHT", SplitBarLeft, "BOTTOMLEFT", -C["ActionBar"].Button_Space, 0)
 			if SavedOptionsPerChar.BottomBars == 2 then
 				ToggleBarText(3, "<\n<\n<", false, true)
 				ToggleBarText(4, ">\n>\n>", false, true)
@@ -191,8 +189,6 @@ local SplitBars = function()
 			ToggleBar[3]:SetPoint("BOTTOMLEFT", ActionBarAnchor, "BOTTOMRIGHT", C["ActionBar"].Button_Space, 0)
 			ToggleBar[4]:ClearAllPoints()
 			ToggleBar[4]:SetPoint("BOTTOMRIGHT", ActionBarAnchor, "BOTTOMLEFT", -C["ActionBar"].Button_Space, 0)
-			VehicleButtonAnchor:ClearAllPoints()
-			VehicleButtonAnchor:SetPoint("BOTTOMRIGHT", ActionBarAnchor, "BOTTOMLEFT", -C["ActionBar"].Button_Space, 0)
 			if SavedOptionsPerChar.BottomBars == 2 then
 				ToggleBarText(3, ">\n>\n>", true)
 				ToggleBarText(4, "<\n<\n<", true)
@@ -342,8 +338,6 @@ for i = 1, 5 do
 		elseif i == 3 or i == 4 then
 			ToggleBar[3]:FadeIn()
 			ToggleBar[4]:FadeIn()
-			VehicleButtonAnchor:ClearAllPoints()
-			VehicleButtonAnchor:SetPoint("BOTTOMRIGHT", ToggleBar[4], "BOTTOMLEFT", -C["ActionBar"].Button_Space, 0)
 		else
 			K:UIFrameFadeIn(ToggleBar[i], 0.4, ToggleBar[i]:GetAlpha(), 1)
 		end
@@ -356,12 +350,6 @@ for i = 1, 5 do
 			if InCombatLockdown() then return end
 			ToggleBar[3]:FadeOut()
 			ToggleBar[4]:FadeOut()
-			VehicleButtonAnchor:ClearAllPoints()
-			if SavedOptionsPerChar.SplitBars == true then
-				VehicleButtonAnchor:SetPoint("BOTTOMRIGHT", SplitBarLeft, "BOTTOMLEFT", -C["ActionBar"].Button_Space, 0)
-			else
-				VehicleButtonAnchor:SetPoint("BOTTOMRIGHT", ActionBarAnchor, "BOTTOMLEFT", -C["ActionBar"].Button_Space, 0)
-			end
 		else
 			K:UIFrameFadeOut(ToggleBar[i], 1, ToggleBar[i]:GetAlpha(), 0)
 		end

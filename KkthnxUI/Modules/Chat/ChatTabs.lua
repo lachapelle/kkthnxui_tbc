@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local _G = _G
 local CreateFrame = CreateFrame
@@ -104,8 +104,6 @@ hooksecurefunc("FCF_StartAlertFlash", function(frame)
 	local tab = _G["ChatFrame"..frame:GetID().."Tab"]
 	updateFS(tab, true, 1, 0, 0)
 end)
-
-hooksecurefunc("FCFTab_UpdateColors", faneifyTab)
 
 for i = 1, NUM_CHAT_WINDOWS do
 	faneifyTab(_G["ChatFrame"..i.."Tab"])

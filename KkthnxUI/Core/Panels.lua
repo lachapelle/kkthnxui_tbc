@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local unpack = unpack
 local _G = _G
@@ -58,7 +58,6 @@ else
 	petbaranchor:CreatePanel("Invisible", (C["ActionBar"].Button_Size + C["ActionBar"].Button_Space), (C["ActionBar"].Button_Size * 10) + (C["ActionBar"].Button_Space * 9), unpack(C["position"].right_bars))
 end
 petbaranchor:SetFrameStrata("LOW")
-RegisterStateDriver(petbaranchor, "visibility", "[pet,novehicleui,nobonusbar:5] show; hide")
 
 --	Stance bar anchor
 local ShiftHolder = CreateFrame("Frame", "ShiftHolder", UIParent)

@@ -1,4 +1,4 @@
-local K, C, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 SystemFont_Shadow_Huge3:SetFont(C["font"].combat_font, C["font"].combat_font_size, C["font"].combat_font_style)
 SystemFont_Shadow_Huge3:SetShadowOffset(K.Mult, -K.Mult)

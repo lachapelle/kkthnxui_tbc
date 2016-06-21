@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Blizzard"].reputations ~= true then return end
 
 local pairs = pairs
@@ -127,15 +127,17 @@ function ShowReputations()
 end
 
 local ReputationsTitleFrame = CreateFrame("Frame")
-ReputationsTitleFrame:SetSize(288,20)
-ReputationsTitleFrame.text = ReputationsTitleFrame:CreateFontString(nil, "ARTWORK", "QuestFont_Shadow_Huge")
+ReputationsTitleFrame:SetWidth(288)
+ReputationsTitleFrame:SetHeight(20)
+ReputationsTitleFrame.text = ReputationsTitleFrame:CreateFontString(nil, "ARTWORK", "QuestFont")
 ReputationsTitleFrame.text:SetAllPoints(true)
 ReputationsTitleFrame.text:SetJustifyH("LEFT")
 ReputationsTitleFrame.text:SetJustifyV("TOP")
 ReputationsTitleFrame.text:SetTextColor(0,0,0,1)
 
 local ReputationsDetailFrame = CreateFrame("Frame")
-ReputationsDetailFrame:SetSize(288,200)
+ReputationsDetailFrame:SetWidth(288)
+ReputationsDetailFrame:SetHeight(20)
 ReputationsDetailFrame.text = ReputationsDetailFrame:CreateFontString(nil, "ARTWORK", "QuestFontNormalSmall")
 ReputationsDetailFrame.text:SetAllPoints(true)
 ReputationsDetailFrame.text:SetJustifyH("LEFT")
@@ -158,76 +160,9 @@ local function Reputations_ShowDetail()
 	end
 	if numRepFactions then
 		windowSize = numRepFactions * 30 + 20
-		ReputationsDetailFrame:SetSize(288, windowSize)
+		ReputationsDetailFrame:SetWidth(288)
+		ReputationsDetailFrame:SetHeight(windowSize)
 	end
 	ReputationsDetailFrame.text:SetText(stringRep)
 	return ReputationsDetailFrame
-end
-
-local posSpacer = 0
-for i = #QUEST_TEMPLATE_LOG.elements-2, 1, -3 do
-	if QUEST_TEMPLATE_LOG.elements[i] == QuestInfo_ShowSpacer then
-		posSpacer = i
-		break
-	end
-end
-if posSpacer > 0 then
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer, Reputations_ShowTitle)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +1, 0)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +2, -10)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +3, Reputations_ShowDetail)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +4, 0)
-	table.insert(QUEST_TEMPLATE_LOG.elements, posSpacer +5, -5)
-else
-	table.insert(QUEST_TEMPLATE_LOG.elements, Reputations_ShowTitle)
-	table.insert(QUEST_TEMPLATE_LOG.elements, 0)
-	table.insert(QUEST_TEMPLATE_LOG.elements, -10)
-	table.insert(QUEST_TEMPLATE_LOG.elements, Reputations_ShowDetail)
-	table.insert(QUEST_TEMPLATE_LOG.elements, 0)
-	table.insert(QUEST_TEMPLATE_LOG.elements, -5)
-end
-
-for i = #QUEST_TEMPLATE_DETAIL2.elements -2, 1, -3 do
-	if QUEST_TEMPLATE_DETAIL2.elements[i] == QuestInfo_ShowSpacer then
-		posSpacer = i
-		break
-	end
-end
-if posSpacer > 0 then
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer, Reputations_ShowTitle)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +1, 0)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +2, -10)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +3, Reputations_ShowDetail)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +4, 0)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, posSpacer +5, -5)
-else
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, Reputations_ShowTitle)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, 0)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, -10)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, Reputations_ShowDetail)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, 0)
-	table.insert(QUEST_TEMPLATE_DETAIL2.elements, -5)
-end
-
-
-for i = #QUEST_TEMPLATE_REWARD.elements -2, 1, -3 do
-	if QUEST_TEMPLATE_REWARD.elements[i] == QuestInfo_ShowSpacer then
-		posSpacer = i
-		break
-	end
-end
-if posSpacer > 0 then
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer, Reputations_ShowTitle)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +1, 0)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +2, -10)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +3, Reputations_ShowDetail)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +4, 0)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, posSpacer +5, -5)
-else
-	table.insert(QUEST_TEMPLATE_REWARD.elements, Reputations_ShowTitle)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, 0)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, -10)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, Reputations_ShowDetail)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, 0)
-	table.insert(QUEST_TEMPLATE_REWARD.elements, -5)
 end

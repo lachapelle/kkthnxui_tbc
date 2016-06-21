@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local format, find, gsub = string.format, string.find, string.gsub
 local match = string.match
@@ -30,12 +30,18 @@ K.SimpleBackdrop = {bgFile = C["Media"].Blank}
 K.UIParent = CreateFrame("Frame", "KkthnxUIParent", UIParent)
 K.UIParent:SetFrameLevel(UIParent:GetFrameLevel())
 K.UIParent:SetPoint("CENTER", UIParent, "CENTER")
-K.UIParent:SetSize(UIParent:GetSize())
+K.UIParent:SetHeight(UIParent:GetHeight())
+K.UIParent:SetWidth(UIParent:GetWidth())
 
 K.TexCoords = {0.08, 0.92, 0.08, 0.92}
 
 K.Print = function(...)
-	print("|cff2eb6ffKkthnxUI|r:", ...)
+	local text = "|cff2eb6ffKkthnxUI|r:"
+	for i = 1, select("#", ...) do
+        text = text .. " " .. tostring(select(i, ...))
+    end
+
+    DEFAULT_CHAT_FRAME:AddMessage(text)
 end
 
 K.SetFontString = function(parent, fontName, fontHeight, fontStyle)
@@ -110,7 +116,7 @@ K.CheckRole = function(self, event, unit)
 		local base, posBuff, negBuff = UnitAttackPower("player")
 		local playerap = base + posBuff + negBuff
 
-		if ((playerap > playerint) or (playeragi > playerint)) and not (UnitBuff("player", GetSpellInfo(24858)) or UnitBuff("player", GetSpellInfo(65139))) then
+		if ( (playerap > playerint) or (playeragi > playerint) ) then
 			K.Role = "Melee"
 		else
 			K.Role = "Caster"

@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local CreateFrame = CreateFrame
 local hooksecurefunc = hooksecurefunc
@@ -24,21 +24,8 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 		end
 	end
 
-	VideoOptionsResolutionPanelUIScaleSlider:Kill()
-	VideoOptionsResolutionPanelUseUIScale:Kill()
-	TutorialFrameAlertButton:Kill()
-
-	if C["Chat"].enable then
-		InterfaceOptionsSocialPanelChatStyle:EnableMouse(false)
-		InterfaceOptionsSocialPanelChatStyleButton:Hide()
-		InterfaceOptionsSocialPanelChatStyle:SetAlpha(0)
-		InterfaceOptionsSocialPanelWholeChatWindowClickable:Kill()
-		InterfaceOptionsSocialPanelConversationMode:Kill()
-	end
-
 	if C["Unitframe"].enable then
 		PartyMemberBackground:Kill()
-		InterfaceOptionsUnitFramePanelPartyBackground:Kill()
 	end
 
 	if C["Minimap"].enable then
@@ -60,10 +47,6 @@ frame:SetScript("OnEvent", function(self, event, addon, ...)
 
 	if C["Nameplate"].enable then
 		InterfaceOptionsCombatPanelEnemyCastBarsOnNameplates:Kill()
-		SetCVar("ShowClassColorInNameplate", 1)
-		if C["Nameplate"].enhance_threat == true then
-			InterfaceOptionsDisplayPanelAggroWarningDisplay:Kill()
-		end
 	end
 	
 	if addon == "MikScrollingBattleText" then

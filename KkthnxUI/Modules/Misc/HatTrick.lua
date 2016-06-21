@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Misc"].hattrick ~= true then return end
 
 local GameTooltip = GameTooltip
@@ -6,7 +6,8 @@ local CreateFrame = CreateFrame
 
 local HelmCheck = CreateFrame("CheckButton", "HelmCheckBox", PaperDollFrame, "OptionsCheckButtonTemplate")
 HelmCheck:ClearAllPoints()
-HelmCheck:SetSize(22, 22)
+HelmCheck:SetWidth(22)
+HelmCheck:SetHeight(22)
 HelmCheck:SetPoint("TOPLEFT", CharacterHeadSlot, "TOPRIGHT", 5, 0)
 HelmCheck:SetScript("OnClick", function() ShowHelm(not ShowingHelm()) end)
 HelmCheck:SetScript("OnEnter", function()
@@ -20,7 +21,8 @@ HelmCheck:SetToplevel(true)
 
 local CloakCheck = CreateFrame("CheckButton", "CloakCheckBox", PaperDollFrame, "OptionsCheckButtonTemplate")
 CloakCheck:ClearAllPoints()
-CloakCheck:SetSize(22, 22)
+CloakCheck:SetWidth(22)
+CloakCheck:SetHeight(22)
 CloakCheck:SetPoint("TOPLEFT", CharacterBackSlot, "TOPRIGHT", 5, 0)
 CloakCheck:SetScript("OnClick", function() ShowCloak(not ShowingCloak()) end)
 CloakCheck:SetScript("OnEnter", function()

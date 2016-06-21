@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if IsAddOnLoaded("!BlizzBugsSuck") then return end
 
 local _G = _G
@@ -97,17 +97,7 @@ do
 		local Smin, Smax = InterfaceOptionsFrameAddOnsListScrollBar:GetMinMaxValues()
 		InterfaceOptionsFrameAddOnsListScrollBar:SetValue((Smax/(shownpanels-15))*(mypanel-2))
 		doNotRun = true
-		InterfaceOptionsFrame_OpenToCategory(panel)
+		InterfaceOptionsFrame_OpenToFrame(panel)
 	end
-	hooksecurefunc("InterfaceOptionsFrame_OpenToCategory", InterfaceOptionsFrame_OpenToCategory_Fix)
-end
-
--- Fix for minimap ping points not updating as your character moves.
--- Original code taken from AntiRadarJam by Lombra with permission.
-do
-	MinimapPing:HookScript("OnUpdate", function(self, elapsed)
-		if self.fadeOut or self.timer > MINIMAPPING_FADE_TIMER then
-			Minimap_SetPing(Minimap:GetPingPosition())
-		end
-	end)
+	hooksecurefunc("InterfaceOptionsFrame_OpenToFrame", InterfaceOptionsFrame_OpenToCategory_Fix)
 end

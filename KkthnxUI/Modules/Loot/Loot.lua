@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Loot"].lootframe ~= true then return end
 
 local gsub = string.gsub
@@ -7,7 +7,7 @@ local CreateFrame = CreateFrame
 local UnitIsDead = UnitIsDead
 
 -- Loot frame(Butsu by Haste)
-local _, _NS = ...
+local _, _NS = KKaddonInfo() -- FIXME??
 local Butsu = CreateFrame("Button", "Butsu")
 local lb = CreateFrame("Button", "ButsuAdv", Butsu, "UIPanelScrollDownButtonTemplate")
 local LDD = CreateFrame("Frame", "ButsuLDD", Butsu, "UIDropDownMenuTemplate")
@@ -191,7 +191,8 @@ Butsu:SetToplevel(true)
 Butsu:SetFrameLevel(10)
 
 local close = CreateFrame("Button", "LootCloseButton", Butsu, "UIPanelCloseButton")
-close:SetSize(26, 26)
+close:SetWidth(26)
+close:SetHeight(26)
 close:SetPoint("BOTTOMRIGHT", Butsu, "TOPRIGHT", 2, -25)
 close:SetScript("OnClick", function() CloseLoot() end)
 
@@ -339,7 +340,8 @@ do
 		frame:SetScript("OnUpdate", OnUpdate)
 
 		local iconFrame = CreateFrame("Frame", nil, frame)
-		iconFrame:SetSize(C["Loot"].icon_size, C["Loot"].icon_size)
+		iconFrame:SetWidth(C["Loot"].icon_size)
+		iconFrame:SetHeight(C["Loot"].icon_size)
 		CreateBorder(iconFrame, 10, 1)
 		iconFrame:SetPoint("LEFT", frame)
 		frame.iconFrame = iconFrame
@@ -353,7 +355,8 @@ do
 		local quest = iconFrame:CreateTexture(nil, "OVERLAY")
 		quest:SetTexture("Interface\\Minimap\\ObjectIcons")
 		quest:SetTexCoord(1/8, 2/8, 1/8, 2/8)
-		quest:SetSize(C["Loot"].icon_size * 0.8, C["Loot"].icon_size * 0.8)
+		quest:SetWidth(C["Loot"].icon_size * 0.8)
+		quest:SetHeight(C["Loot"].icon_size * 0.8)
 		quest:SetPoint("BOTTOMLEFT", -C["Loot"].icon_size * 0.15, 0)
 		frame.quest = quest
 

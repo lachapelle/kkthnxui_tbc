@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local _G = _G
 local unpack = unpack
@@ -58,19 +58,6 @@ hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 	end
 end)
 
--- Vehicle Indicator
-local VehicleAnchor = CreateFrame("Frame", "VehicleAnchor", UIParent)
-VehicleAnchor:SetPoint(unpack(C["position"].vehicle))
-VehicleAnchor:SetSize(VehicleSeatIndicator:GetWidth(), VehicleSeatIndicator:GetHeight())
-
-hooksecurefunc(VehicleSeatIndicator, "SetPoint", function(_, _, parent)
-	if parent == "MinimapCluster" or parent == _G["MinimapCluster"] then
-		VehicleSeatIndicator:ClearAllPoints()
-		VehicleSeatIndicator:SetPoint("BOTTOM", VehicleAnchor, "BOTTOM", 0, 24)
-		VehicleSeatIndicator:SetFrameStrata("LOW")
-	end
-end)
-
 -- Force readycheck warning
 local ShowReadyCheckHook = function(self, initiator)
 	if initiator ~= "player" then
@@ -120,24 +107,6 @@ ForceCVar:SetScript("OnEvent", function(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then
 		if not GetCVarBool("lockActionBars") and C["ActionBar"].Enable then
 			SetCVar("lockActionBars", 1)
-		end
-		if not GetCVarBool("ShowAllSpellRanks") and ShowAllSpellRanksCheckBox:GetChecked() == true then
-			SetCVar("ShowAllSpellRanks", 0)
-		end
-	end
-end)
-
--- Auto select current event boss from LFD tool(EventBossAutoSelect by Nathanyel)
-local firstLFD
-LFDParentFrame:HookScript("OnShow", function()
-	if not firstLFD then
-		firstLFD = 1
-		for i = 1, GetNumRandomDungeons() do
-			local id = GetLFGRandomDungeonInfo(i)
-			local isHoliday = select(15, GetLFGDungeonInfo(id))
-			if isHoliday and not GetLFGDungeonRewards(id) then
-				LFDQueueFrame_SetType(id)
-			end
 		end
 	end
 end)

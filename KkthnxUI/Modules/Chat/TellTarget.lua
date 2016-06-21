@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = select(2, ...):unpack()
+﻿local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Chat"].enable ~= true then return end
 
 local _G = _G
@@ -10,7 +10,7 @@ local GetUnitName = GetUnitName
 
 -- Tell Target
 for i = 1, NUM_CHAT_WINDOWS do
-	local editbox = _G["ChatFrame"..i.."EditBox"]
+	local editbox = _G["ChatFrameEditBox"]
 	editbox:HookScript("OnTextChanged", function(self)
 		local text = self:GetText()
 		if text:len() < 7 then

@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = select(2, ...):unpack()
+﻿local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Chat"].enable ~= true or C["Chat"].whisp_sound ~= true then return end
 
 local sub = string.sub

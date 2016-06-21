@@ -458,7 +458,8 @@ function CreateUIConfig()
 	-- Main Frame
 	local UIConfigMain = CreateFrame("Frame", "UIConfigMain", UIParent)
 	UIConfigMain:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 200)
-	UIConfigMain:SetSize(780, 520)
+	UIConfigMain:SetWidth(780)
+	UIConfigMain:SetHeight(520)
 	UIConfigMain:SetBackdrop(K.Backdrop)
 	UIConfigMain:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
 	UIConfigMain:SetBackdropBorderColor(K.Color.r, K.Color.g, K.Color.b)
@@ -468,7 +469,8 @@ function CreateUIConfig()
 
 	-- Version Title
 	local TitleBoxVer = CreateFrame("Frame", "TitleBoxVer", UIConfigMain)
-	TitleBoxVer:SetSize(180, 24)
+	TitleBoxVer:SetWidth(180)
+	TitleBoxVer:SetHeight(24)
 	TitleBoxVer:SetPoint("TOPLEFT", UIConfigMain, "TOPLEFT", 23, -15)
 
 	local TitleBoxVerText = TitleBoxVer:CreateFontString("UIConfigTitleVer", "OVERLAY", "GameFontNormal")
@@ -477,7 +479,8 @@ function CreateUIConfig()
 
 	-- Main Frame Title
 	local TitleBox = CreateFrame("Frame", "TitleBox", UIConfigMain)
-	TitleBox:SetSize(540, 24)
+	TitleBox:SetWidth(540)
+	TitleBox:SetHeight(24)
 	TitleBox:SetPoint("TOPLEFT", TitleBoxVer, "TOPRIGHT", 15, 0)
 
 	local TitleBoxText = TitleBox:CreateFontString("UIConfigTitle", "OVERLAY", "GameFontNormal")
@@ -486,7 +489,8 @@ function CreateUIConfig()
 	-- Options Frame
 	local UIConfig = CreateFrame("Frame", "UIConfig", UIConfigMain)
 	UIConfig:SetPoint("TOPLEFT", TitleBox, "BOTTOMLEFT", 10, -15)
-	UIConfig:SetSize(520, 400)
+	UIConfig:SetWidth(520)
+	UIConfig:SetHeight(400)
 
 	local UIConfigBG = CreateFrame("Frame", "UIConfigBG", UIConfig)
 	UIConfigBG:SetPoint("TOPLEFT", -10, 10)
@@ -495,7 +499,8 @@ function CreateUIConfig()
 	-- Group Frame
 	local groups = CreateFrame("ScrollFrame", "UIConfigCategoryGroup", UIConfig)
 	groups:SetPoint("TOPLEFT", TitleBoxVer, "BOTTOMLEFT", 10, -15)
-	groups:SetSize(160, 400)
+	groups:SetWidth(160)
+	groups:SetHeight(400)
 
 	local groupsBG = CreateFrame("Frame", "groupsBG", UIConfig)
 	groupsBG:SetPoint("TOPLEFT", groups, -10, 10)
@@ -512,7 +517,8 @@ function CreateUIConfig()
 	-- Group Scroll
 	local slider = CreateFrame("Slider", "UIConfigCategorySlider", groups)
 	slider:SetPoint("TOPRIGHT", 0, 0)
-	slider:SetSize(20, 400)
+	slider:SetWidth(20)
+	slider:SetHeight(400)
 	slider:SetThumbTexture("Interface\\Buttons\\UI-ScrollBar-Knob")
 	slider:SetOrientation("VERTICAL")
 	slider:SetValueStep(20)

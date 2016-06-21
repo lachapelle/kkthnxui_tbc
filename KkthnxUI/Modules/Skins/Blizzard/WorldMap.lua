@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Skins"].worldmap ~= true or IsAddOnLoaded("Mapster") == true or IsAddOnLoaded("Aurora") then return end
 
 local floor = math.floor

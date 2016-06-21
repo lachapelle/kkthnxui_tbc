@@ -1,4 +1,4 @@
-local K, C, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local _G = _G
 local floor = math.floor
@@ -68,7 +68,8 @@ local function SetBorderSize(self, size, dL, dR, dT, dB)
 	dL, dR, dT, dB = dL or t.LEFT.offset or 0, dR or t.RIGHT.offset or 0, dT or t.TOP.offset or 0, dB or t.BOTTOM.offset or 0
 
 	for pos, tex in pairs(t) do
-		tex:SetSize(size, size)
+		tex:SetWidth(size)
+		tex:SetHeight(size)
 	end
 
 	local d = floor(size * (OFFSET_SIZE / CORNER_SIZE) + 0.5)

@@ -1,4 +1,4 @@
-local K, C, _ = select(2, ...):unpack()
+local K, C, _ = select(2, KKaddonInfo()):unpack()
 
 -- If you're saving frame positions, use "UIParent", not UIParent
 C["position"] = {
@@ -25,10 +25,8 @@ C["position"] = {
 	["ticket"] = {"TOPLEFT", "UIParent", "TOPLEFT", 0, -1},
 	["tooltip"] = {"BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -3, 3},
 	["uierror"] = {"TOP", "UIParent", "TOP", 0, -30},
-	["vehicle"] = {"TOP", "Minimap", "BOTTOM", 0, -30},
 	["right_bars"] = {"BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -5, 330},
 	["worldmap"] = {"CENTER", "UIParent", "CENTER", 0, 70},
-	["vehicle_bar"] = {"BOTTOMRIGHT", "ActionButton1", "BOTTOMLEFT", -3, 0},
 	["pulse_cooldown"] = {"CENTER", "UIParent", "CENTER", 0, 0},
 	-- UnitFrame positions
 	unitframes = {

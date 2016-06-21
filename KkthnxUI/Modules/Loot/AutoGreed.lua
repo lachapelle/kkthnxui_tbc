@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Loot"].auto_greed ~= true or K.Level ~= MAX_PLAYER_LEVEL then return end
 
 local pairs = pairs

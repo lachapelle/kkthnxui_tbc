@@ -1,4 +1,4 @@
-local K, _ = select(2, ...):unpack()
+local K, _ = select(2, KKaddonInfo()):unpack()
 
 local floor = math.floor
 local select = select

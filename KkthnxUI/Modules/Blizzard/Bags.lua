@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Bag"].enable ~= true then return end
 
 local match = string.match
@@ -464,7 +464,8 @@ function Stuffing:CreateBagFrame(w)
 
 	-- close button
 	f.b_close = CreateFrame("Button", "Stuffing_CloseButton"..w, f, "UIPanelCloseButton")
-	f.b_close:SetSize(32, 32)
+	f.b_close:SetWidth(32)
+	f.b_close:SetHeight(32)
 	f.b_close:RegisterForClicks("AnyUp")
 	f.b_close:SetPoint("TOPRIGHT", -3, -3)
 	f.b_close:SetScript("OnClick", function(self, btn)
@@ -529,13 +530,15 @@ function Stuffing:InitBags()
 	editbox:SetHeight(32)
 
 	local left = editbox:CreateTexture(nil, "BACKGROUND")
-	left:SetSize(8, 20)
+	left:SetWidth(8)
+	left:SetHeight(20)
 	left:SetPoint("LEFT", -5, 0)
 	left:SetTexture("Interface\\Common\\Common-Input-Border")
 	left:SetTexCoord(0, 0.0625, 0, 0.625)
 
 	local right = editbox:CreateTexture(nil, "BACKGROUND")
-	right:SetSize(8, 20)
+	right:SetWidth(8)
+	right:SetHeight(20)
 	right:SetPoint("RIGHT", 0, 0)
 	right:SetTexture("Interface\\Common\\Common-Input-Border")
 	right:SetTexCoord(0.9375, 1, 0, 0.625)
@@ -697,7 +700,8 @@ function Stuffing:Layout(lb)
 
 			b.frame:ClearAllPoints()
 			b.frame:SetPoint("LEFT", fb, "LEFT", xoff, 0)
-			b.frame:SetSize(bsize, bsize)
+			b.frame:SetWidth(bsize)
+			b.frame:SetHeight(bsize)
 
 			-- Lets see what bag we are hovering over.
 			local btns = self.buttons
@@ -774,12 +778,14 @@ function Stuffing:Layout(lb)
 
 					b.frame:ClearAllPoints()
 					b.frame:SetPoint("TOPLEFT", f, "TOPLEFT", xoff, yoff)
-					b.frame:SetSize(C["Bag"].button_size, C["Bag"].button_size)
+					b.frame:SetWidth(C["Bag"].button_size)
+					b.frame:SetHeight(C["Bag"].button_size)
 					b.frame.lock = false
 					b.frame:SetAlpha(1)
 
 					local normalTex = _G[b.frame:GetName() .. "NormalTexture"]
-					normalTex:SetSize(C["Bag"].button_size / 37 * 64, C["Bag"].button_size / 37 * 64)
+					normalTex:SetWidth(C["Bag"].button_size / 37 * 64)
+					normalTex:SetHeight(C["Bag"].button_size / 37 * 64)
 					b.normalTex = normalTex
 
 					if bagType == ST_QUIVER then
@@ -813,7 +819,8 @@ function Stuffing:Layout(lb)
 					b.iconTex = iconTex
 
 					if b.Glow then
-						b.Glow:SetSize(C["Bag"].button_size / 37 * 64, C["Bag"].button_size / 37 * 64)
+						b.Glow:SetWidth(C["Bag"].button_size / 37 * 64)
+						b.Glow:SetHeight(C["Bag"].button_size / 37 * 64)
 					end
 
 					idx = idx + 1

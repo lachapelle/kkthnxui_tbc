@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Auras"].cast_by ~= true then return end
 
 local format = string.format
@@ -18,7 +18,7 @@ local function addAuraSource(self, func, unit, index, filter)
 	local srcUnit = select(8, func(unit, index, filter))
 	if srcUnit then
 		local src = GetUnitName(srcUnit, true)
-		if srcUnit == "pet" or srcUnit == "vehicle" then
+		if srcUnit == "pet" then
 			src = format("%s (|cff%02x%02x%02x%s|r)", src, K.Color.r * 255, K.Color.g * 255, K.Color.b * 255, GetUnitName("player", true))
 		else
 			local partypet = srcUnit:match("^partypet(%d+)$")

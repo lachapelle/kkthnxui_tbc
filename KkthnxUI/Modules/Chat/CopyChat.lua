@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 
 local _G = _G
 local format = string.format
@@ -31,7 +31,8 @@ local function CreatCopyFrame()
 	frame:SetBackdrop(K.Backdrop)
 	frame:SetBackdropBorderColor(unpack(C["Media"].Border_Color))
 	frame:SetBackdropColor(unpack(C["Media"].Backdrop_Color))
-	frame:SetSize(540, 300)
+	frame:SetWidth(540)
+	frame:SetHeight(300)
 	frame:SetPoint("CENTER", UIParent, "CENTER", 0, 100)
 	frame:SetFrameStrata("DIALOG")
 	tinsert(UISpecialFrames, "CopyFrame")
@@ -47,7 +48,8 @@ local function CreatCopyFrame()
 	editBox:EnableMouse(true)
 	editBox:SetAutoFocus(false)
 	editBox:SetFontObject(ChatFontNormal)
-	editBox:SetSize(500, 300)
+	editBox:SetWidth(500)
+	editBox:SetHeight(300)
 	editBox:SetScript("OnEscapePressed", function() frame:Hide() end)
 
 	scrollArea:SetScrollChild(editBox)
@@ -91,7 +93,8 @@ for i = 1, NUM_CHAT_WINDOWS do
 	local cf = _G[format("ChatFrame%d", i)]
 	local button = CreateFrame("Button", format("ButtonCF%d", i), cf)
 	button:SetPoint("BOTTOMRIGHT", 0, -4)
-	button:SetSize(16, 16)
+	button:SetWidth(16)
+	button:SetHeight(16)
 	button:SetNormalTexture("Interface\\BUTTONS\\UI-GuildButton-PublicNote-Up")
 	button:SetAlpha(0)
 

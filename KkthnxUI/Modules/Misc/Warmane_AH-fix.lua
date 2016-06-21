@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if IsAddOnLoaded("Warmane_AH-fix") then return end
 
 local pairs = pairs

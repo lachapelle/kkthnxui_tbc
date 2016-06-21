@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or C["Cooldown"].enable ~= true then return end
 
 -- Cooldown count(tullaCC by Tuller)
@@ -88,7 +88,7 @@ local function Timer_Create(self)
 	text:SetJustifyH("CENTER")
 	timer.text = text
 
-	Timer_OnSizeChanged(timer, scaler:GetSize())
+	Timer_OnSizeChanged(timer, scaler:GetWidth(), scaler:GetHeight())
 	scaler:SetScript("OnSizeChanged", function(self, ...) Timer_OnSizeChanged(timer, ...) end)
 
 	self.timer = timer

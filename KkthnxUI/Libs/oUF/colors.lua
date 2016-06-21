@@ -1,4 +1,4 @@
-local parent, ns = ...
+local parent, ns = oUFaddonInfo()
 local oUF = ns.oUF
 local Private = oUF.Private
 

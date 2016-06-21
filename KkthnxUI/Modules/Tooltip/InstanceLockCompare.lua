@@ -1,4 +1,4 @@
-﻿local K, C, L, _ = select(2, ...):unpack()
+﻿local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["Tooltip"].enable ~= true or C["Tooltip"].instance_lock ~= true then return end
 
 local gsub = string.gsub

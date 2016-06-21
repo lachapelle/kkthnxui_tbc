@@ -1,4 +1,4 @@
-local K, C, L, _ = select(2, ...):unpack()
+local K, C, L, _ = select(2, KKaddonInfo()):unpack()
 if C["ActionBar"].Enable ~= true then return end
 
 local _G = _G
@@ -8,7 +8,6 @@ local pairs = pairs
 do
 	MainMenuBar:SetScale(0.00001)
 	MainMenuBar:EnableMouse(false)
-	VehicleMenuBar:SetScale(0.00001)
 	PetActionBarFrame:EnableMouse(false)
 	ShapeshiftBarFrame:EnableMouse(false)
 
@@ -16,7 +15,6 @@ do
 		MainMenuBar,
 		MainMenuBarArtFrame,
 		BonusActionBarFrame,
-		VehicleMenuBar,
 		PossessBarFrame,
 		PetActionBarFrame,
 		ShapeshiftBarFrame,
